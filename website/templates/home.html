@@ -4,11 +4,10 @@
 
 {% if user.is_authenticated %}
 <br/>
-    <h1>Hello World!</h1>
+    <h1>Latest</h1>
 <table class="table table-hover table-bordered">
   <thead>
     <tr>
-<!--      <th scope="col">#</th>-->
       <th scope="col">Name</th>
       <th scope="col">Price</th>
       <th scope="col">Growth</th>
@@ -20,15 +19,43 @@
     <tr>
       <td>{{ coin.name }}</td>
       <td>{{ coin.quote.USD.price|floatformat:2 }}</td>
-      <td>{{ coin.quote.USD.percent_change_24h }}</td>
+      <td style="color:
+        {% if coin.quote.USD.percent_change_24h > 0 %}
+        green
+        {% elif coin.quote.USD.percent_change_24h == 0 %}
+        yellow
+        {% else %}
+        red
+        {% endif %}">
+          {{ coin.quote.USD.percent_change_24h }}
+      </td>
+        <td>
+            <a href="{% url 'purchase_coin' coin=coin.name %}">
+             <button type="submit" class="btn btn-outline-warning">Buy</button>
+            </a>
+        </td>
     </tr>
 
   {% endfor %}
   </tbody>
 </table>
 
+<!--<div class="card">-->
+<!--  <div class="card-body">-->
+<!--      bla bla bla-->
+<!--  </div>-->
+<!--</div>-->
+
+<script>
+    setTimeout(() => location.reload(), 60000);
+</script>
+
 {% else %}
+    <br/>
+
 <div class="col-md-6 offset-md-3">
+<div class="card">
+  <div class="card-body">
 <h1>Login</h1>
     <br/>
     <form method="POST" action="{% url 'home' %}">
@@ -44,10 +71,12 @@
                 <input type="password" class="form-control" name="password", placeholder="Password" required>
             </div>
                 <br/>
-            <button type="submit" class="btn btn-secondary">Login</button>
+            <button type="submit" class="btn btn-outline-warning">Login</button>
         </form>
 
     </form>
+</div>
+  </div>
 </div>
 {% endif %}
 

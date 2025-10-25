@@ -2,30 +2,32 @@
 
 {% block content %}
     <div class="col-md-6 offset-md-3">
+        <br/>
+        <div class="card">
+  <div class="card-body">
 <h1>Register</h1>
     <br/>
     <form method="POST" action="{% url 'register' %}">
         {% csrf_token %}
         <form>
-            <div>
+            <div class="mb-3">
                 <input type="text" class="form-control" name="username", placeholder="User Name" required>
             </div>
-                <br/>
             <div class="mb-3">
                 <input type="email" class="form-control" name="email", placeholder="Email" required>
             </div>
-                <br/>
             <div class="mb-3">
                 <input type="password" class="form-control" name="password1", placeholder="Password" required>
             </div>
-                <br/>
             <div class="mb-3">
                 <input type="password" class="form-control" name="password2", placeholder="Confirm Password" required>
             </div>
                 <br/>
-            <button type="submit" class="btn btn-secondary">Register</button>
+            <button type="submit" class="btn btn-outline-warning">Register</button>
         </form>
 
     </form>
+  </div>
+</div>
 </div>
 {% endblock %}
