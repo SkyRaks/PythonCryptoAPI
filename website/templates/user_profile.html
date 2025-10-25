@@ -10,8 +10,46 @@
           Welcome {{ user.username.capitalize }}
       </h1>
       <h2>
-          Your balance is 100,000.00$
+          My Portfolio:
       </h2>
+      <br/>
+
+
+      <table class="table table-hover table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Amount</th>
+      <th scope="col">Price (for 1 item)</th>
+      <th scope="col">Date</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% if portfolio %}
+    {% for coin in portfolio %}
+    <tr>
+        <td>{{ coin.name }}</td>
+        <td>{{ coin.amount }}</td>
+        <td>${{ coin.price|floatformat:2 }} </td>
+        <td>{{ coin.created_at|date }}</td>
+
+    </tr>
+    {% endfor %}
+
+  {% else %}
+  <td colspan="4">
+      <h3>
+          <center>
+            Your Portfolio is Empty
+          </center>
+      </h3>
+  </td>
+  {% endif %}
+
+  </tbody>
+</table>
+
+
   </div>
 </div>
 </div>

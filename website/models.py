@@ -7,3 +7,4 @@ class Portfolio(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
     amount = models.FloatField()
+    price = models.FloatField()

@@ -42,23 +42,27 @@ def register_user(request):
         return render(request, 'register.html')
 
 def user_profile(request):
-    return render(request, 'user_profile.html')
+    if request.user.is_authenticated:
+        user_id = request.user
+        portfolio = Portfolio.objects.filter(user_id_id=user_id)
+        return render(request, 'user_profile.html', {'portfolio':portfolio})
+    else:
+        messages.success(request, "You have to be logged in to view that page!")
+        return redirect('home')
 
-# def purchase_coin(request):
-#     return render(request, 'purchase_coin.html')
-
-def purchase_coin(request, coin):
+def purchase_coin(request, coin, price):
     if request.user.is_authenticated:
         if request.method == 'POST':
             # name = request.POST[coin]
             amount = request.POST.get('amount')
-            portfolio = Portfolio.objects.create(user_id=request.user, name=coin, amount=amount)
+            portfolio = Portfolio.objects.create(user_id=request.user, name=coin, amount=amount, price=price)
             portfolio.save()
             return redirect('home')
         else:
-            return render(request, 'purchase_coin.html', {'coin':coin})
+            # GET request
+            print(price)
+            return render(request, 'purchase_coin.html', {'coin':coin, 'price':price})
 
-        # return render(request, 'record.html', {'customer_record':customer_record})
     else:
         return redirect('home')
 

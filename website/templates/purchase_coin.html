@@ -13,9 +13,9 @@
                 <center>100,000.00$</center>
             </h1>
 
-<!--            method="POST" action="{% url 'purchase_coin' coin%}"-->
                     {{ coin }}
-            <form method="POST" action="{% url 'purchase_coin' coin %}">
+                    {{ price }}
+            <form method="POST" action="{% url 'purchase_coin' coin price %}">
                 {% csrf_token %}
                 <form>
 <!--                    <div class="mb-3">-->

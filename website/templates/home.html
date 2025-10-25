@@ -30,7 +30,7 @@
           {{ coin.quote.USD.percent_change_24h }}
       </td>
         <td>
-            <a href="{% url 'purchase_coin' coin=coin.name %}">
+            <a href="{% url 'purchase_coin' coin=coin.name price=coin.quote.USD.price %}">
              <button type="submit" class="btn btn-outline-warning">Buy</button>
             </a>
         </td>
