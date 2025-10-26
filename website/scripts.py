@@ -19,7 +19,7 @@ def get_crypto_data():
 
     try:
         responce = requests.get(url=base_url, headers=headers, params=parameters)
-        data =responce.json()
+        data = responce.json()
         crypto_data = data.get("data", [])
         print(f"status code: {responce.status_code}")
         return crypto_data

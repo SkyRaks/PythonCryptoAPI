@@ -15,7 +15,6 @@
   </thead>
   <tbody>
   {% for coin in crypto_data %}
-
     <tr>
       <td>{{ coin.name }}</td>
       <td>{{ coin.quote.USD.price|floatformat:2 }}</td>

@@ -4,13 +4,13 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from website.scripts import get_crypto_data
 from .models import Portfolio
+from django.core.cache import cache
 
 # i'm using CoinMarketCap API
 # put your own api key
 
 # Create your views here.
 def home(request):
-    crypto_data = get_crypto_data()
 
     if request.method == 'POST':
         username = request.POST['username']
@@ -19,11 +19,15 @@ def home(request):
         if user is not None:
             login(request, user)
             messages.success(request, "you have been logged in")
-            return redirect('home')
         else:
             messages.success(request, "error try again")
-            return redirect('home')
+        return redirect('home')
     else:
+        crypto_data = cache.get('crypto_data')
+
+        if not crypto_data:
+            crypto_data = get_crypto_data()
+            cache.set('crypto_data', crypto_data, timeout=60)
         return render(request, 'home.html', {'crypto_data': crypto_data})
 
 def logout_user(request):

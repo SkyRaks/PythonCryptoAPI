@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% load cache %}
 <br/>
-<!--class="col-md-6 offset-md-3"-->
 <div>
     <div class="card">
   <div class="card-body">
@@ -26,6 +26,7 @@
   </thead>
   <tbody>
   {% if portfolio %}
+  {% cache 60 coin_table %}
     {% for coin in portfolio %}
     <tr>
         <td>{{ coin.name }}</td>
@@ -40,6 +41,7 @@
 
     </tr>
     {% endfor %}
+  {% endcache %}
 
   {% else %}
   <td colspan="4">

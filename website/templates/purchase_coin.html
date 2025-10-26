@@ -6,28 +6,20 @@
     <div class="card">
         <div class="card-body">
 <!--            class="card-body d-flex justify-content-center"-->
-            <h1>
-                <center>Your Balance is:</center>
-            </h1>
-            <h1>
-                <center>100,000.00$</center>
-            </h1>
-
+<!--            <h1>-->
+<!--                <center>Your Balance is:</center>-->
+<!--            </h1>-->
+<!--            <h1>-->
+<!--                <center>100,000.00$</center>-->
+<!--            </h1>-->
                     {{ coin }}
                     {{ price }}
             <form method="POST" action="{% url 'purchase_coin' coin price %}">
                 {% csrf_token %}
                 <form>
-<!--                    <div class="mb-3">-->
-<!--                        <input class="form-control" type="text" placeholder="{{ coin }}" name="coin" aria-label="Disabled input example" disabled>-->
-<!--                    </div>-->
                     <div class="mb-3">
                         <input type="text" class="form-control" name="amount", placeholder="Amount" required>
                     </div>
-        <!--            <div class="d-grid gap-2 col-6 mx-auto">-->
-        <!--                <button class="btn btn-outline-success" type="button">Crypto</button>-->
-        <!--            </div>-->
-
                     <button type="submit" class="btn btn-outline-warning">Buy</button>
                 </form>
 
