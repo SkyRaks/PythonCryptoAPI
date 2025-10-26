@@ -1,7 +1,7 @@
 import requests
 from requests.exceptions import ConnectionError, Timeout, TooManyRedirects
 
-API_KEY = "your api key"
+API_KEY = "7c426efde64148b8bf7ccfff864b43d6"
 base_url = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest"
 
 # this is api call for cryptocurrency data
