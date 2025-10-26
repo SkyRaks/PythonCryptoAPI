@@ -32,6 +32,11 @@
         <td>{{ coin.amount }}</td>
         <td>${{ coin.price|floatformat:2 }} </td>
         <td>{{ coin.created_at|date }}</td>
+        <td>
+            <a href="{% url 'sell_coin' pk=coin.id %}">
+             <button type="submit" class="btn btn-outline-danger">Sell</button>
+            </a>
+        </td>
 
     </tr>
     {% endfor %}
